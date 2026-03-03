@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Analytics Dashboard - Investment Advisor AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Theme variables */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f7f8;
+            --bg-tertiary: #ececec;
+            --text-primary: #0d0d0d;
+            --text-secondary: #6e6e80;
+            --border: #e5e5e5;
+            --accent: #19c37d;
+            --accent-hover: #1a7f4b;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3a3a3a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border: #404040;
+            --accent: #19c37d;
+            --accent-hover: #1a7f4b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .back-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.15s;
+        }
+        
+        .back-btn:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .table-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .table-header {
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .export-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.15s;
+        }
+        
+        .export-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        .queries-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .queries-table th {
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        .queries-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        .queries-table tr:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .query-text {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .category-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .category-finance {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .category-marketing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .precision-value {
+            font-weight: 600;
+        }
+        
+        .precision-high {
+            color: #059669;
+        }
+        
+        .precision-medium {
+            color: #d97706;
+        }
+        
+        .precision-low {
+            color: #dc2626;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 1rem;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            .queries-table {
+                min-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <i class="fas fa-chart-line"></i>
+                Query Analytics Dashboard
+            </div>
+            <a href="/" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Advisor
+            </a>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="totalQueries">-</div>
+                <div class="metric-label">Total Queries</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="avgPrecision">-</div>
+                <div class="metric-label">Average Precision@8</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="financeQueries">-</div>
+                <div class="metric-label">Finance Queries</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="marketingQueries">-</div>
+                <div class="metric-label">Marketing Queries</div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <div class="table-header">
+                <div class="table-title">Query-by-Query Analysis</div>
+                <button class="export-btn" onclick="exportToCSV()">
+                    <i class="fas fa-download"></i>
+                    Export CSV
+                </button>
+            </div>
+            
+            <div id="tableContent">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Loading query data...
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let queryData = [];
+        
+        async function loadQueryData() {
+            try {
+                const response = await fetch('/api/comprehensive-queries?token=' + getURLToken());
+                const data = await response.json();
+                
+                if (data.success) {
+                    queryData = data.queries;
+                    updateMetrics(data.queries);
+                    renderTable(data.queries);
+                } else {
+                    showError('Failed to load dashboard data');
+                }
+            } catch (error) {
+                showError('Error loading dashboard data');
+            }
+        }
+        
+        function updateMetrics(queries) {
+            if (!queries || queries.length === 0) {
+                document.getElementById('totalQueries').textContent = '0';
+                document.getElementById('avgPrecision').textContent = '-';
+                document.getElementById('financeQueries').textContent = '0';
+                document.getElementById('marketingQueries').textContent = '0';
+                return;
+            }
+            
+            const totalQueries = queries.length;
+            const financeQueries = queries.filter(q => q.category === 'finance').length;
+            const marketingQueries = queries.filter(q => q.category === 'marketing').length;
+            
+            // Calculate average precision
+            const validPrecisions = queries.filter(q => q.precision_at_k > 0);
+            const avgPrecision = validPrecisions.length > 0 
+                ? validPrecisions.reduce((sum, q) => sum + q.precision_at_k, 0) / validPrecisions.length 
+                : 0;
+            
+            document.getElementById('totalQueries').textContent = totalQueries;
+            document.getElementById('avgPrecision').textContent = 
+                avgPrecision > 0 ? (avgPrecision * 100).toFixed(1) + '%' : '-';
+            document.getElementById('financeQueries').textContent = financeQueries;
+            document.getElementById('marketingQueries').textContent = marketingQueries;
+        }
+        
+        function getURLToken() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('token') || '';
+        }
+        
+        function renderTable(queries) {
+            const tableContent = document.getElementById('tableContent');
+            
+            if (!queries || queries.length === 0) {
+                tableContent.innerHTML = '<div class="no-data">No query data available</div>';
+                return;
+            }
+            
+            const tableHTML = `
+                <table class="queries-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Query</th>
+                            <th>Category</th>
+                            <th>Query Type</th>
+                            <th>Complexity</th>
+                            <th>Sentiment</th>
+                            <th>Processing Time</th>
+                            <th>Response Quality</th>
+                            <th>Precision@8</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${queries.map(query => `
+                            <tr>
+                                <td>${formatTimestamp(query.timestamp)}</td>
+                                <td class="query-text" title="${escapeHtml(query.query)}">${escapeHtml(query.query)}</td>
+                                <td><span class="category-badge category-${query.category}">${query.category}</span></td>
+                                <td>${query.query_type || '-'}</td>
+                                <td>${query.complexity_score || '-'}</td>
+                                <td>${query.sentiment || '-'}</td>
+                                <td>${query.processing_time ? (query.processing_time * 1000).toFixed(0) + 'ms' : '-'}</td>
+                                <td class="precision-value ${getQualityClass(query.response_quality)}">
+                                    ${query.response_quality ? query.response_quality + '/10' : '-'}
+                                </td>
+                                <td class="precision-value ${getPrecisionClass(query.precision_at_k)}">
+                                    ${query.precision_at_k ? (query.precision_at_k * 100).toFixed(1) + '%' : '-'}
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            
+            tableContent.innerHTML = tableHTML;
+        }
+        
+        function formatTimestamp(timestamp) {
+            if (!timestamp) return '-';
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function getPrecisionClass(precision) {
+            if (!precision) return '';
+            if (precision >= 0.7) return 'precision-high';
+            if (precision >= 0.4) return 'precision-medium';
+            return 'precision-low';
+        }
+        
+        function getQualityClass(quality) {
+            if (!quality) return '';
+            if (quality >= 8) return 'precision-high';
+            if (quality >= 6) return 'precision-medium';
+            return 'precision-low';
+        }
+        
+        function exportToCSV() {
+            if (!queryData || queryData.length === 0) {
+                alert('No data to export');
+                return;
+            }
+            
+            const headers = [
+                'Timestamp', 'Query', 'Category', 'Query Type', 'Complexity', 'Sentiment',
+                'Processing Time', 'Response Quality', 'Precision@8', 'Sources Retrieved', 'Sources Cited'
+            ];
+            
+            const csvContent = [
+                headers.join(','),
+                ...queryData.map(query => [
+                    `"${formatTimestamp(query.timestamp)}"`,
+                    `"${escapeCsvField(query.query)}"`,
+                    query.category,
+                    query.query_type || '-',
+                    query.complexity_score || '-',
+                    query.sentiment || '-',
+                    query.processing_time ? (query.processing_time * 1000).toFixed(0) + 'ms' : '-',
+                    query.response_quality ? query.response_quality + '/10' : '-',
+                    query.precision_at_k ? (query.precision_at_k * 100).toFixed(1) + '%' : '-',
+                    query.sources_retrieved || 0,
+                    query.sources_cited || 0
+                ].join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `query-analytics-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+        
+        function escapeCsvField(field) {
+            if (typeof field !== 'string') return field;
+            return field.replace(/"/g, '""');
+        }
+        
+        function showError(message) {
+            const tableContent = document.getElementById('tableContent');
+            tableContent.innerHTML = `<div class="no-data">${message}</div>`;
+        }
+        
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            loadQueryData();
+        });
+
+        // Initialize theme from URL parameter or localStorage
+        function initializeTheme() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlTheme = urlParams.get('theme');
+            const savedTheme = urlTheme || localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+    </script>
+</body>
+</html>

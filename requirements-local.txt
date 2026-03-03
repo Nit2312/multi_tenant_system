@@ -1,0 +1,16 @@
+langchain==0.1.16
+langchain-astradb==0.2.0
+python-dotenv
+pydantic-settings
+flask
+flask-cors
+huggingface-hub
+astrapy>=1.1.0,<2.0
+langchain-core==0.1.42
+langchain-community==0.0.32
+PyPDF2
+pandas
+numpy
+openpyxl
+sentence-transformers
+# Add any additional local-only packages below
