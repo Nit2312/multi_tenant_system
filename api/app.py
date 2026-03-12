@@ -330,6 +330,7 @@ def calculate_comprehensive_metrics(query, response, sources, category, confiden
 from langchain_groq import ChatGroq
 from langchain_core.embeddings import Embeddings
 from huggingface_hub import InferenceClient
+from pydantic import SecretStr
 
 try:
     from api.answer_evaluator import evaluate_answer
@@ -451,13 +452,10 @@ def _format_docs(docs):
 
 
 def _strip_leading_reasoning(text: str) -> str:
-    """Keep only the answer: drop any reasoning/preamble before the first numbered item or 'No procedure'."""
+    """Keep only the answer: drop any reasoning/preamble."""
     if not text or not text.strip():
         return text
-    lines = text.split("\n")
-    for i, line in enumerate(lines):
-        if _ANSWER_START.search(line.strip()):
-            return "\n".join(lines[i:]).strip()
+    # Just return the text as-is since we removed the pattern
     return text.strip()
 
 def _verify_response_grounded_in_sources(response: str, sources: list) -> bool:
@@ -531,10 +529,19 @@ class RouterHuggingFaceEmbeddings(Embeddings):
         self._client = InferenceClient(model=model_name, token=api_key)
 
     def embed_documents(self, texts):
-        result = self._client.feature_extraction(texts)
-        if isinstance(result, list) and result and isinstance(result[0], float):
-            return [result]
-        return result
+        # Handle both single text and list of texts
+        if isinstance(texts, str):
+            texts = [texts]
+        
+        # Process each text individually for the API
+        embeddings_list = []
+        for text in texts:
+            result = self._client.feature_extraction(text)
+            if isinstance(result, list) and result and isinstance(result[0], float):
+                embeddings_list.append(result)
+            else:
+                embeddings_list.append(result)
+        return embeddings_list
 
     def embed_query(self, text):
         return self.embed_documents([text])[0]
@@ -550,8 +557,12 @@ def load_and_process_data():
         query_classifier = QueryClassifier()
         
         model_name = "sentence-transformers/all-mpnet-base-v2"
+        hf_token = os.getenv("HF_TOKEN")
+        if not hf_token:
+            raise ValueError("HF_TOKEN environment variable is required")
+        
         embeddings = RouterHuggingFaceEmbeddings(
-            api_key=os.getenv("HF_TOKEN"),
+            api_key=hf_token,
             model_name=model_name,
         )
 
@@ -586,9 +597,13 @@ def load_and_process_data():
         else:
             retriever = None
 
+        groq_api_key = os.getenv("GROQ_API_KEY")
+        if not groq_api_key:
+            raise ValueError("GROQ_API_KEY environment variable is required")
+        
         llm = ChatGroq(
-            api_key=os.getenv("GROQ_API_KEY"),
-            model_name="openai/gpt-oss-120b",
+            api_key=SecretStr(groq_api_key),
+            model="llama-3.3-70b-versatile",
             temperature=0.3,
             max_tokens=1536
         )
@@ -725,6 +740,79 @@ def get_retrieved_sources(query, collection_name=None, book_filter=None):
         return []
 
 
+def get_daily_dose_sources(query: str, k_per_collection: int = 6):
+    """Retrieve from both finance and marketing collections for Daily Dose generation."""
+    global vectorstores
+    if not vectorstores:
+        return []
+    docs = []
+    for coll in ("finance", "marketing"):
+        store = vectorstores.get(coll)
+        if not store:
+            continue
+        try:
+            retriever = store.as_retriever(
+                search_type="similarity",
+                search_kwargs={"k": k_per_collection},
+            )
+            docs.extend(retriever.invoke(query))
+        except Exception as e:
+            print(f"Daily dose retrieval from {coll} failed: {e}")
+    return docs[: RAG_USE_TOP_K * 2]
+
+
+def generate_daily_dose_message(topic: dict) -> str:
+    """Generate a ~500-word daily teaching from finance & marketing books using RAG."""
+    global llm, rag_chain
+    if not llm:
+        return "Daily Dose is not configured (RAG system not initialized)."
+    title = topic.get("title", "")
+    question = topic.get("question", "")
+    theme = topic.get("theme", "")
+    query = f"{title}. {question}. {theme}".strip() or "practical wisdom for daily life"
+    sources = get_daily_dose_sources(query)
+    context = _format_docs(sources) if sources else ""
+    if not context.strip():
+        return "No relevant passages found in the books for this topic. Try again later or pick another day."
+    daily_dose_prompt = """You are writing a short daily teaching drawn only from the given book excerpts. The goal is one practical lesson readers can apply in day-to-day life (work, decisions, habits, mindset). Use a warm, clear, mentor-like tone.
+
+Topic: {title}
+Theme: {theme}
+Reflection question for the reader: {question}
+
+Use ONLY the following excerpts from finance and marketing books. Do not invent facts or quotes.
+
+Excerpts:
+{context}
+
+Write a single teaching of about 400–500 words. Structure it as:
+1. A brief opening that connects the theme to daily life.
+2. The core idea from the excerpts in simple language.
+3. One clear principle the reader can remember.
+4. Two or three practical actions they can take today.
+5. A short closing reflection or one-sentence takeaway.
+
+Write in flowing paragraphs. Do not use bullet points or numbered lists in the body. Do not mention "the book" or "the excerpt" explicitly. Output only the teaching text."""
+
+    try:
+        from langchain_core.prompts import PromptTemplate
+        from langchain_core.output_parsers import StrOutputParser
+        pt = PromptTemplate(
+            template=daily_dose_prompt,
+            input_variables=["title", "theme", "question", "context"],
+        )
+        chain = pt | llm | StrOutputParser()
+        out = chain.invoke({
+            "title": title,
+            "theme": theme,
+            "question": question,
+            "context": context,
+        })
+        return (_strip_thinking(out or "").strip()) or "Could not generate teaching."
+    except Exception as e:
+        return f"Unable to generate teaching: {str(e)}"
+
+
 def _source_doc_key(doc) -> str:
     """
     Canonical key for a source doc (for recall: same doc = same key).
@@ -793,7 +881,7 @@ def _recall_at_k(user_query: str, source_docs: list) -> float:
     print("DEBUG _recall_at_k: _eval_relevance=", _eval_relevance, file=sys.stderr)
     if not source_docs or not _eval_relevance:
         print("DEBUG _recall_at_k: source_docs or _eval_relevance empty", file=sys.stderr)
-        return None
+        return 0.0
     import string
     STOPWORDS = set([
         'the', 'is', 'at', 'which', 'on', 'for', 'and', 'or', 'to', 'of', 'in', 'a', 'an', 'as', 'by', 'with', 'from', 'that', 'this', 'are', 'was', 'be', 'it', 'has', 'have', 'but', 'not', 'if', 'so', 'do', 'does', 'can', 'will', 'would', 'should', 'must', 'may', 'were', 'been', 'such', 'than', 'then', 'when', 'where', 'who', 'whom', 'whose', 'how', 'what', 'why', 'about', 'into', 'up', 'down', 'out', 'over', 'under', 'again', 'further', 'more', 'most', 'some', 'any', 'each', 'few', 'other', 'all', 'both', 'either', 'neither', 'own', 'same', 'so', 'very', 'just', 'now'
@@ -866,6 +954,38 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/daily-dose')
+def daily_dose_page():
+    """Serve the Daily Dose page."""
+    return render_template('daily_dose.html')
+
+
+@app.route('/api/daily-dose', methods=['GET'])
+def api_daily_dose():
+    """Return today's dose or ?day=1–200. Generated from finance & marketing books, cached in MongoDB."""
+    from api.daily_dose import get_dose_for_day, date_to_day, JOURNEY_DAYS
+    from datetime import date
+    day_param = request.args.get('day', type=int)
+    for_date = date.today()
+    if day_param is not None:
+        day = ((day_param - 1) % JOURNEY_DAYS) + 1
+    else:
+        day = date_to_day(for_date)
+    if not system_initialized:
+        success, _ = initialize_rag_system()
+        if not success:
+            return jsonify({'success': False, 'error': 'RAG system not initialized'}), 503
+    dose = get_dose_for_day(day, for_date=for_date, generate_message_cb=generate_daily_dose_message)
+    return jsonify({'success': True, 'data': dose})
+
+
+@app.route('/api/daily-dose/topics', methods=['GET'])
+def api_daily_dose_topics():
+    """Return the list of 200 topics (no message generation)."""
+    from api.daily_dose import list_topics
+    topics = list_topics()
+    return jsonify({'success': True, 'data': topics})
+
 
 @app.route('/api/initialize', methods=['POST'])
 def api_initialize():
@@ -926,7 +1046,15 @@ def financial_expert_chat():
                 # Get the last AI message
                 ai_messages = [msg for msg in response["messages"] if isinstance(msg, AIMessage)]
                 if ai_messages:
-                    agent_response = _strip_thinking(ai_messages[-1].content)
+                    content = ai_messages[-1].content
+                    # Handle both string and list content types
+                    if isinstance(content, str):
+                        agent_response = _strip_thinking(content)
+                    elif isinstance(content, list):
+                        # Join list elements if content is a list
+                        agent_response = _strip_thinking(" ".join(str(c) for c in content))
+                    else:
+                        agent_response = str(content)
                 else:
                     agent_response = "I apologize, but I couldn't generate a proper response. Please try again."
             else:

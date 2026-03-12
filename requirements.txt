@@ -14,3 +14,4 @@ astrapy>=1.1.0,<2.0
 numpy
 pandas
 PyMuPDF
+pymongo>=4.0

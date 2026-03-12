@@ -1,0 +1,1402 @@
+[
+  {
+    "day": 1,
+    "title": "Compound interest in life",
+    "question": "Where can I apply compounding beyond money?",
+    "source": "Finance & Marketing",
+    "theme": "Investing & Money"
+  },
+  {
+    "day": 2,
+    "title": "Patience in decisions",
+    "question": "How do I slow down when everyone rushes?",
+    "source": "Finance & Marketing",
+    "theme": "Patience & Long-term"
+  },
+  {
+    "day": 3,
+    "title": "Knowing your circle of competence",
+    "question": "What do I truly understand well?",
+    "source": "Finance & Marketing",
+    "theme": "Risk & Safety"
+  },
+  {
+    "day": 4,
+    "title": "Margin of safety in choices",
+    "question": "How do I leave room for error?",
+    "source": "Finance & Marketing",
+    "theme": "Learning & Competence"
+  },
+  {
+    "day": 5,
+    "title": "Mr. Market and emotional discipline",
+    "question": "How do I stay calm when others panic?",
+    "source": "Finance & Marketing",
+    "theme": "Habits & Discipline"
+  },
+  {
+    "day": 6,
+    "title": "Intrinsic value of things",
+    "question": "What is this really worth to me?",
+    "source": "Finance & Marketing",
+    "theme": "Marketing & Customers"
+  },
+  {
+    "day": 7,
+    "title": "Buying wonderful at fair price",
+    "question": "When is good enough good enough?",
+    "source": "Finance & Marketing",
+    "theme": "Brand & Trust"
+  },
+  {
+    "day": 8,
+    "title": "Long-term holding",
+    "question": "What am I willing to hold for years?",
+    "source": "Finance & Marketing",
+    "theme": "Decision Making"
+  },
+  {
+    "day": 9,
+    "title": "Diversification vs concentration",
+    "question": "How much should I spread my bets?",
+    "source": "Finance & Marketing",
+    "theme": "Emotions & Psychology"
+  },
+  {
+    "day": 10,
+    "title": "Fear and greed",
+    "question": "How do I use others' emotions wisely?",
+    "source": "Finance & Marketing",
+    "theme": "Value & Price"
+  },
+  {
+    "day": 11,
+    "title": "Customer obsession",
+    "question": "What does my customer need today?",
+    "source": "Finance & Marketing",
+    "theme": "Compound Growth"
+  },
+  {
+    "day": 12,
+    "title": "Brand as promise",
+    "question": "What do people expect from me?",
+    "source": "Finance & Marketing",
+    "theme": "Circle of Competence"
+  },
+  {
+    "day": 13,
+    "title": "Positioning in mind",
+    "question": "How do I want to be remembered?",
+    "source": "Finance & Marketing",
+    "theme": "Margin of Safety"
+  },
+  {
+    "day": 14,
+    "title": "Story over specs",
+    "question": "What story does my work tell?",
+    "source": "Finance & Marketing",
+    "theme": "Market Psychology"
+  },
+  {
+    "day": 15,
+    "title": "Simplicity in execution",
+    "question": "What can I remove and still deliver?",
+    "source": "Finance & Marketing",
+    "theme": "Customer Focus"
+  },
+  {
+    "day": 16,
+    "title": "Focus and saying no",
+    "question": "What am I saying no to today?",
+    "source": "Finance & Marketing",
+    "theme": "Positioning"
+  },
+  {
+    "day": 17,
+    "title": "Integrity as asset",
+    "question": "What would I do if no one watched?",
+    "source": "Finance & Marketing",
+    "theme": "Storytelling"
+  },
+  {
+    "day": 18,
+    "title": "Time as scarce resource",
+    "question": "What deserves my attention today?",
+    "source": "Finance & Marketing",
+    "theme": "Simplicity"
+  },
+  {
+    "day": 19,
+    "title": "Opportunity cost of yes",
+    "question": "What am I giving up by doing this?",
+    "source": "Finance & Marketing",
+    "theme": "Focus"
+  },
+  {
+    "day": 20,
+    "title": "Moat in career",
+    "question": "What advantage do I have that compounds?",
+    "source": "Finance & Marketing",
+    "theme": "Integrity"
+  },
+  {
+    "day": 21,
+    "title": "Cash flow thinking",
+    "question": "What actually puts money in the bank?",
+    "source": "Finance & Marketing",
+    "theme": "Time Management"
+  },
+  {
+    "day": 22,
+    "title": "Debt and leverage",
+    "question": "When does borrowing help or hurt?",
+    "source": "Finance & Marketing",
+    "theme": "Opportunity Cost"
+  },
+  {
+    "day": 23,
+    "title": "Frugality and freedom",
+    "question": "What spending adds no lasting value?",
+    "source": "Finance & Marketing",
+    "theme": "Diversification"
+  },
+  {
+    "day": 24,
+    "title": "Goals that stretch",
+    "question": "What would I do if I knew I could not fail?",
+    "source": "Finance & Marketing",
+    "theme": "Intrinsic Value"
+  },
+  {
+    "day": 25,
+    "title": "Feedback loops",
+    "question": "How do I get better signal from the world?",
+    "source": "Finance & Marketing",
+    "theme": "Moat & Advantage"
+  },
+  {
+    "day": 26,
+    "title": "Innovation vs imitation",
+    "question": "When to copy and when to create?",
+    "source": "Finance & Marketing",
+    "theme": "Cash Flow"
+  },
+  {
+    "day": 27,
+    "title": "Competing on value",
+    "question": "How do I stand out without burning out?",
+    "source": "Finance & Marketing",
+    "theme": "Debt & Leverage"
+  },
+  {
+    "day": 28,
+    "title": "Pricing confidence",
+    "question": "What am I really worth?",
+    "source": "Finance & Marketing",
+    "theme": "Savings & Frugality"
+  },
+  {
+    "day": 29,
+    "title": "Negotiation as collaboration",
+    "question": "How do I expand the pie?",
+    "source": "Finance & Marketing",
+    "theme": "Goals & Planning"
+  },
+  {
+    "day": 30,
+    "title": "Leading by example",
+    "question": "What would my team see if they watched me?",
+    "source": "Finance & Marketing",
+    "theme": "Feedback & Iteration"
+  },
+  {
+    "day": 31,
+    "title": "Team over solo",
+    "question": "When do I need others to win?",
+    "source": "Finance & Marketing",
+    "theme": "Innovation"
+  },
+  {
+    "day": 32,
+    "title": "Clear communication",
+    "question": "Did they understand what I meant?",
+    "source": "Finance & Marketing",
+    "theme": "Competition"
+  },
+  {
+    "day": 33,
+    "title": "Persistence and pivots",
+    "question": "When do I push through vs change course?",
+    "source": "Finance & Marketing",
+    "theme": "Pricing"
+  },
+  {
+    "day": 34,
+    "title": "Learning from failure",
+    "question": "What did this teach me?",
+    "source": "Finance & Marketing",
+    "theme": "Negotiation"
+  },
+  {
+    "day": 35,
+    "title": "Curiosity as engine",
+    "question": "What did I learn today?",
+    "source": "Finance & Marketing",
+    "theme": "Leadership"
+  },
+  {
+    "day": 36,
+    "title": "Reading as leverage",
+    "question": "What book would change my game?",
+    "source": "Finance & Marketing",
+    "theme": "Teamwork"
+  },
+  {
+    "day": 37,
+    "title": "Finding mentors",
+    "question": "Who has been where I want to go?",
+    "source": "Finance & Marketing",
+    "theme": "Communication"
+  },
+  {
+    "day": 38,
+    "title": "Networking with intent",
+    "question": "Who do I want to help and learn from?",
+    "source": "Finance & Marketing",
+    "theme": "Persistence"
+  },
+  {
+    "day": 39,
+    "title": "Reputation over short-term win",
+    "question": "What would my reputation say?",
+    "source": "Finance & Marketing",
+    "theme": "Failure & Learning"
+  },
+  {
+    "day": 40,
+    "title": "Value investing in time",
+    "question": "Where am I underinvesting my hours?",
+    "source": "Finance & Marketing",
+    "theme": "Curiosity"
+  },
+  {
+    "day": 41,
+    "title": "Emotional discipline",
+    "question": "What would my calmest self do?",
+    "source": "Finance & Marketing",
+    "theme": "Reading & Learning"
+  },
+  {
+    "day": 42,
+    "title": "Staying in circle",
+    "question": "What am I pretending to know?",
+    "source": "Finance & Marketing",
+    "theme": "Mentors"
+  },
+  {
+    "day": 43,
+    "title": "Buffer for unknowns",
+    "question": "What could go wrong and am I ready?",
+    "source": "Finance & Marketing",
+    "theme": "Networking"
+  },
+  {
+    "day": 44,
+    "title": "Market mood and opportunity",
+    "question": "How do I use fear and greed?",
+    "source": "Finance & Marketing",
+    "theme": "Reputation"
+  },
+  {
+    "day": 45,
+    "title": "Worth beyond price",
+    "question": "What has lasting value for me?",
+    "source": "Finance & Marketing",
+    "theme": "Investing & Money"
+  },
+  {
+    "day": 46,
+    "title": "Fair price for peace",
+    "question": "When is paying more worth it?",
+    "source": "Finance & Marketing",
+    "theme": "Patience & Long-term"
+  },
+  {
+    "day": 47,
+    "title": "Holding through noise",
+    "question": "What do I believe in for the long run?",
+    "source": "Finance & Marketing",
+    "theme": "Risk & Safety"
+  },
+  {
+    "day": 48,
+    "title": "Concentration of effort",
+    "question": "Where should I go all in?",
+    "source": "Finance & Marketing",
+    "theme": "Learning & Competence"
+  },
+  {
+    "day": 49,
+    "title": "Contrarian thinking",
+    "question": "Where is the crowd wrong?",
+    "source": "Finance & Marketing",
+    "theme": "Habits & Discipline"
+  },
+  {
+    "day": 50,
+    "title": "Customer first",
+    "question": "How does this serve the user?",
+    "source": "Finance & Marketing",
+    "theme": "Marketing & Customers"
+  },
+  {
+    "day": 51,
+    "title": "Promise and delivery",
+    "question": "Do I keep my word?",
+    "source": "Finance & Marketing",
+    "theme": "Brand & Trust"
+  },
+  {
+    "day": 52,
+    "title": "Mindshare",
+    "question": "What do people think when they hear my name?",
+    "source": "Finance & Marketing",
+    "theme": "Decision Making"
+  },
+  {
+    "day": 53,
+    "title": "Narrative power",
+    "question": "What story wins hearts?",
+    "source": "Finance & Marketing",
+    "theme": "Emotions & Psychology"
+  },
+  {
+    "day": 54,
+    "title": "Less is more",
+    "question": "What can I cut?",
+    "source": "Finance & Marketing",
+    "theme": "Value & Price"
+  },
+  {
+    "day": 55,
+    "title": "Strategic no",
+    "question": "What am I not doing?",
+    "source": "Finance & Marketing",
+    "theme": "Compound Growth"
+  },
+  {
+    "day": 56,
+    "title": "Character as brand",
+    "question": "Who am I when it's hard?",
+    "source": "Finance & Marketing",
+    "theme": "Circle of Competence"
+  },
+  {
+    "day": 57,
+    "title": "Attention allocation",
+    "question": "What gets my best hours?",
+    "source": "Finance & Marketing",
+    "theme": "Margin of Safety"
+  },
+  {
+    "day": 58,
+    "title": "Cost of yes",
+    "question": "What did I give up?",
+    "source": "Finance & Marketing",
+    "theme": "Market Psychology"
+  },
+  {
+    "day": 59,
+    "title": "Durable advantage",
+    "question": "What gets better over time?",
+    "source": "Finance & Marketing",
+    "theme": "Customer Focus"
+  },
+  {
+    "day": 60,
+    "title": "Real income",
+    "question": "What actually pays?",
+    "source": "Finance & Marketing",
+    "theme": "Positioning"
+  },
+  {
+    "day": 61,
+    "title": "Good debt, bad debt",
+    "question": "Does this debt serve me?",
+    "source": "Finance & Marketing",
+    "theme": "Storytelling"
+  },
+  {
+    "day": 62,
+    "title": "Spend on what matters",
+    "question": "What purchases multiply?",
+    "source": "Finance & Marketing",
+    "theme": "Simplicity"
+  },
+  {
+    "day": 63,
+    "title": "Stretch goals",
+    "question": "What would 10x look like?",
+    "source": "Finance & Marketing",
+    "theme": "Focus"
+  },
+  {
+    "day": 64,
+    "title": "Fast feedback",
+    "question": "How quickly do I learn?",
+    "source": "Finance & Marketing",
+    "theme": "Integrity"
+  },
+  {
+    "day": 65,
+    "title": "Copy vs create",
+    "question": "When to follow and when to lead?",
+    "source": "Finance & Marketing",
+    "theme": "Time Management"
+  },
+  {
+    "day": 66,
+    "title": "Differentiation",
+    "question": "Why would they choose me?",
+    "source": "Finance & Marketing",
+    "theme": "Opportunity Cost"
+  },
+  {
+    "day": 67,
+    "title": "Worth and pricing",
+    "question": "Am I undercharging?",
+    "source": "Finance & Marketing",
+    "theme": "Diversification"
+  },
+  {
+    "day": 68,
+    "title": "Win-win deals",
+    "question": "How do we both gain?",
+    "source": "Finance & Marketing",
+    "theme": "Intrinsic Value"
+  },
+  {
+    "day": 69,
+    "title": "Walk the talk",
+    "question": "Would my team follow this?",
+    "source": "Finance & Marketing",
+    "theme": "Moat & Advantage"
+  },
+  {
+    "day": 70,
+    "title": "Leverage others",
+    "question": "Who can do this better?",
+    "source": "Finance & Marketing",
+    "theme": "Cash Flow"
+  },
+  {
+    "day": 71,
+    "title": "Clarity",
+    "question": "Was I understood?",
+    "source": "Finance & Marketing",
+    "theme": "Debt & Leverage"
+  },
+  {
+    "day": 72,
+    "title": "When to quit",
+    "question": "Is this still the right fight?",
+    "source": "Finance & Marketing",
+    "theme": "Savings & Frugality"
+  },
+  {
+    "day": 73,
+    "title": "Failure as data",
+    "question": "What would I do differently?",
+    "source": "Finance & Marketing",
+    "theme": "Goals & Planning"
+  },
+  {
+    "day": 74,
+    "title": "Daily learning",
+    "question": "What surprised me today?",
+    "source": "Finance & Marketing",
+    "theme": "Feedback & Iteration"
+  },
+  {
+    "day": 75,
+    "title": "Books as mentors",
+    "question": "What would the author do?",
+    "source": "Finance & Marketing",
+    "theme": "Innovation"
+  },
+  {
+    "day": 76,
+    "title": "Learn from the best",
+    "question": "Who has the results I want?",
+    "source": "Finance & Marketing",
+    "theme": "Competition"
+  },
+  {
+    "day": 77,
+    "title": "Give first",
+    "question": "Who can I help this week?",
+    "source": "Finance & Marketing",
+    "theme": "Pricing"
+  },
+  {
+    "day": 78,
+    "title": "Long-term reputation",
+    "question": "What will they say in 10 years?",
+    "source": "Finance & Marketing",
+    "theme": "Negotiation"
+  },
+  {
+    "day": 79,
+    "title": "Compound interest in life",
+    "question": "Where can I apply compounding beyond money?",
+    "source": "Finance & Marketing",
+    "theme": "Leadership"
+  },
+  {
+    "day": 80,
+    "title": "Patience in decisions",
+    "question": "How do I slow down when everyone rushes?",
+    "source": "Finance & Marketing",
+    "theme": "Teamwork"
+  },
+  {
+    "day": 81,
+    "title": "Knowing your circle of competence",
+    "question": "What do I truly understand well?",
+    "source": "Finance & Marketing",
+    "theme": "Communication"
+  },
+  {
+    "day": 82,
+    "title": "Margin of safety in choices",
+    "question": "How do I leave room for error?",
+    "source": "Finance & Marketing",
+    "theme": "Persistence"
+  },
+  {
+    "day": 83,
+    "title": "Mr. Market and emotional discipline",
+    "question": "How do I stay calm when others panic?",
+    "source": "Finance & Marketing",
+    "theme": "Failure & Learning"
+  },
+  {
+    "day": 84,
+    "title": "Intrinsic value of things",
+    "question": "What is this really worth to me?",
+    "source": "Finance & Marketing",
+    "theme": "Curiosity"
+  },
+  {
+    "day": 85,
+    "title": "Buying wonderful at fair price",
+    "question": "When is good enough good enough?",
+    "source": "Finance & Marketing",
+    "theme": "Reading & Learning"
+  },
+  {
+    "day": 86,
+    "title": "Long-term holding",
+    "question": "What am I willing to hold for years?",
+    "source": "Finance & Marketing",
+    "theme": "Mentors"
+  },
+  {
+    "day": 87,
+    "title": "Diversification vs concentration",
+    "question": "How much should I spread my bets?",
+    "source": "Finance & Marketing",
+    "theme": "Networking"
+  },
+  {
+    "day": 88,
+    "title": "Fear and greed",
+    "question": "How do I use others' emotions wisely?",
+    "source": "Finance & Marketing",
+    "theme": "Reputation"
+  },
+  {
+    "day": 89,
+    "title": "Customer obsession",
+    "question": "What does my customer need today?",
+    "source": "Finance & Marketing",
+    "theme": "Investing & Money"
+  },
+  {
+    "day": 90,
+    "title": "Brand as promise",
+    "question": "What do people expect from me?",
+    "source": "Finance & Marketing",
+    "theme": "Patience & Long-term"
+  },
+  {
+    "day": 91,
+    "title": "Positioning in mind",
+    "question": "How do I want to be remembered?",
+    "source": "Finance & Marketing",
+    "theme": "Risk & Safety"
+  },
+  {
+    "day": 92,
+    "title": "Story over specs",
+    "question": "What story does my work tell?",
+    "source": "Finance & Marketing",
+    "theme": "Learning & Competence"
+  },
+  {
+    "day": 93,
+    "title": "Simplicity in execution",
+    "question": "What can I remove and still deliver?",
+    "source": "Finance & Marketing",
+    "theme": "Habits & Discipline"
+  },
+  {
+    "day": 94,
+    "title": "Focus and saying no",
+    "question": "What am I saying no to today?",
+    "source": "Finance & Marketing",
+    "theme": "Marketing & Customers"
+  },
+  {
+    "day": 95,
+    "title": "Integrity as asset",
+    "question": "What would I do if no one watched?",
+    "source": "Finance & Marketing",
+    "theme": "Brand & Trust"
+  },
+  {
+    "day": 96,
+    "title": "Time as scarce resource",
+    "question": "What deserves my attention today?",
+    "source": "Finance & Marketing",
+    "theme": "Decision Making"
+  },
+  {
+    "day": 97,
+    "title": "Opportunity cost of yes",
+    "question": "What am I giving up by doing this?",
+    "source": "Finance & Marketing",
+    "theme": "Emotions & Psychology"
+  },
+  {
+    "day": 98,
+    "title": "Moat in career",
+    "question": "What advantage do I have that compounds?",
+    "source": "Finance & Marketing",
+    "theme": "Value & Price"
+  },
+  {
+    "day": 99,
+    "title": "Cash flow thinking",
+    "question": "What actually puts money in the bank?",
+    "source": "Finance & Marketing",
+    "theme": "Compound Growth"
+  },
+  {
+    "day": 100,
+    "title": "Debt and leverage",
+    "question": "When does borrowing help or hurt?",
+    "source": "Finance & Marketing",
+    "theme": "Circle of Competence"
+  },
+  {
+    "day": 101,
+    "title": "Frugality and freedom",
+    "question": "What spending adds no lasting value?",
+    "source": "Finance & Marketing",
+    "theme": "Margin of Safety"
+  },
+  {
+    "day": 102,
+    "title": "Goals that stretch",
+    "question": "What would I do if I knew I could not fail?",
+    "source": "Finance & Marketing",
+    "theme": "Market Psychology"
+  },
+  {
+    "day": 103,
+    "title": "Feedback loops",
+    "question": "How do I get better signal from the world?",
+    "source": "Finance & Marketing",
+    "theme": "Customer Focus"
+  },
+  {
+    "day": 104,
+    "title": "Innovation vs imitation",
+    "question": "When to copy and when to create?",
+    "source": "Finance & Marketing",
+    "theme": "Positioning"
+  },
+  {
+    "day": 105,
+    "title": "Competing on value",
+    "question": "How do I stand out without burning out?",
+    "source": "Finance & Marketing",
+    "theme": "Storytelling"
+  },
+  {
+    "day": 106,
+    "title": "Pricing confidence",
+    "question": "What am I really worth?",
+    "source": "Finance & Marketing",
+    "theme": "Simplicity"
+  },
+  {
+    "day": 107,
+    "title": "Negotiation as collaboration",
+    "question": "How do I expand the pie?",
+    "source": "Finance & Marketing",
+    "theme": "Focus"
+  },
+  {
+    "day": 108,
+    "title": "Leading by example",
+    "question": "What would my team see if they watched me?",
+    "source": "Finance & Marketing",
+    "theme": "Integrity"
+  },
+  {
+    "day": 109,
+    "title": "Team over solo",
+    "question": "When do I need others to win?",
+    "source": "Finance & Marketing",
+    "theme": "Time Management"
+  },
+  {
+    "day": 110,
+    "title": "Clear communication",
+    "question": "Did they understand what I meant?",
+    "source": "Finance & Marketing",
+    "theme": "Opportunity Cost"
+  },
+  {
+    "day": 111,
+    "title": "Persistence and pivots",
+    "question": "When do I push through vs change course?",
+    "source": "Finance & Marketing",
+    "theme": "Diversification"
+  },
+  {
+    "day": 112,
+    "title": "Learning from failure",
+    "question": "What did this teach me?",
+    "source": "Finance & Marketing",
+    "theme": "Intrinsic Value"
+  },
+  {
+    "day": 113,
+    "title": "Curiosity as engine",
+    "question": "What did I learn today?",
+    "source": "Finance & Marketing",
+    "theme": "Moat & Advantage"
+  },
+  {
+    "day": 114,
+    "title": "Reading as leverage",
+    "question": "What book would change my game?",
+    "source": "Finance & Marketing",
+    "theme": "Cash Flow"
+  },
+  {
+    "day": 115,
+    "title": "Finding mentors",
+    "question": "Who has been where I want to go?",
+    "source": "Finance & Marketing",
+    "theme": "Debt & Leverage"
+  },
+  {
+    "day": 116,
+    "title": "Networking with intent",
+    "question": "Who do I want to help and learn from?",
+    "source": "Finance & Marketing",
+    "theme": "Savings & Frugality"
+  },
+  {
+    "day": 117,
+    "title": "Reputation over short-term win",
+    "question": "What would my reputation say?",
+    "source": "Finance & Marketing",
+    "theme": "Goals & Planning"
+  },
+  {
+    "day": 118,
+    "title": "Value investing in time",
+    "question": "Where am I underinvesting my hours?",
+    "source": "Finance & Marketing",
+    "theme": "Feedback & Iteration"
+  },
+  {
+    "day": 119,
+    "title": "Emotional discipline",
+    "question": "What would my calmest self do?",
+    "source": "Finance & Marketing",
+    "theme": "Innovation"
+  },
+  {
+    "day": 120,
+    "title": "Staying in circle",
+    "question": "What am I pretending to know?",
+    "source": "Finance & Marketing",
+    "theme": "Competition"
+  },
+  {
+    "day": 121,
+    "title": "Buffer for unknowns",
+    "question": "What could go wrong and am I ready?",
+    "source": "Finance & Marketing",
+    "theme": "Pricing"
+  },
+  {
+    "day": 122,
+    "title": "Market mood and opportunity",
+    "question": "How do I use fear and greed?",
+    "source": "Finance & Marketing",
+    "theme": "Negotiation"
+  },
+  {
+    "day": 123,
+    "title": "Worth beyond price",
+    "question": "What has lasting value for me?",
+    "source": "Finance & Marketing",
+    "theme": "Leadership"
+  },
+  {
+    "day": 124,
+    "title": "Fair price for peace",
+    "question": "When is paying more worth it?",
+    "source": "Finance & Marketing",
+    "theme": "Teamwork"
+  },
+  {
+    "day": 125,
+    "title": "Holding through noise",
+    "question": "What do I believe in for the long run?",
+    "source": "Finance & Marketing",
+    "theme": "Communication"
+  },
+  {
+    "day": 126,
+    "title": "Concentration of effort",
+    "question": "Where should I go all in?",
+    "source": "Finance & Marketing",
+    "theme": "Persistence"
+  },
+  {
+    "day": 127,
+    "title": "Contrarian thinking",
+    "question": "Where is the crowd wrong?",
+    "source": "Finance & Marketing",
+    "theme": "Failure & Learning"
+  },
+  {
+    "day": 128,
+    "title": "Customer first",
+    "question": "How does this serve the user?",
+    "source": "Finance & Marketing",
+    "theme": "Curiosity"
+  },
+  {
+    "day": 129,
+    "title": "Promise and delivery",
+    "question": "Do I keep my word?",
+    "source": "Finance & Marketing",
+    "theme": "Reading & Learning"
+  },
+  {
+    "day": 130,
+    "title": "Mindshare",
+    "question": "What do people think when they hear my name?",
+    "source": "Finance & Marketing",
+    "theme": "Mentors"
+  },
+  {
+    "day": 131,
+    "title": "Narrative power",
+    "question": "What story wins hearts?",
+    "source": "Finance & Marketing",
+    "theme": "Networking"
+  },
+  {
+    "day": 132,
+    "title": "Less is more",
+    "question": "What can I cut?",
+    "source": "Finance & Marketing",
+    "theme": "Reputation"
+  },
+  {
+    "day": 133,
+    "title": "Strategic no",
+    "question": "What am I not doing?",
+    "source": "Finance & Marketing",
+    "theme": "Investing & Money"
+  },
+  {
+    "day": 134,
+    "title": "Character as brand",
+    "question": "Who am I when it's hard?",
+    "source": "Finance & Marketing",
+    "theme": "Patience & Long-term"
+  },
+  {
+    "day": 135,
+    "title": "Attention allocation",
+    "question": "What gets my best hours?",
+    "source": "Finance & Marketing",
+    "theme": "Risk & Safety"
+  },
+  {
+    "day": 136,
+    "title": "Cost of yes",
+    "question": "What did I give up?",
+    "source": "Finance & Marketing",
+    "theme": "Learning & Competence"
+  },
+  {
+    "day": 137,
+    "title": "Durable advantage",
+    "question": "What gets better over time?",
+    "source": "Finance & Marketing",
+    "theme": "Habits & Discipline"
+  },
+  {
+    "day": 138,
+    "title": "Real income",
+    "question": "What actually pays?",
+    "source": "Finance & Marketing",
+    "theme": "Marketing & Customers"
+  },
+  {
+    "day": 139,
+    "title": "Good debt, bad debt",
+    "question": "Does this debt serve me?",
+    "source": "Finance & Marketing",
+    "theme": "Brand & Trust"
+  },
+  {
+    "day": 140,
+    "title": "Spend on what matters",
+    "question": "What purchases multiply?",
+    "source": "Finance & Marketing",
+    "theme": "Decision Making"
+  },
+  {
+    "day": 141,
+    "title": "Stretch goals",
+    "question": "What would 10x look like?",
+    "source": "Finance & Marketing",
+    "theme": "Emotions & Psychology"
+  },
+  {
+    "day": 142,
+    "title": "Fast feedback",
+    "question": "How quickly do I learn?",
+    "source": "Finance & Marketing",
+    "theme": "Value & Price"
+  },
+  {
+    "day": 143,
+    "title": "Copy vs create",
+    "question": "When to follow and when to lead?",
+    "source": "Finance & Marketing",
+    "theme": "Compound Growth"
+  },
+  {
+    "day": 144,
+    "title": "Differentiation",
+    "question": "Why would they choose me?",
+    "source": "Finance & Marketing",
+    "theme": "Circle of Competence"
+  },
+  {
+    "day": 145,
+    "title": "Worth and pricing",
+    "question": "Am I undercharging?",
+    "source": "Finance & Marketing",
+    "theme": "Margin of Safety"
+  },
+  {
+    "day": 146,
+    "title": "Win-win deals",
+    "question": "How do we both gain?",
+    "source": "Finance & Marketing",
+    "theme": "Market Psychology"
+  },
+  {
+    "day": 147,
+    "title": "Walk the talk",
+    "question": "Would my team follow this?",
+    "source": "Finance & Marketing",
+    "theme": "Customer Focus"
+  },
+  {
+    "day": 148,
+    "title": "Leverage others",
+    "question": "Who can do this better?",
+    "source": "Finance & Marketing",
+    "theme": "Positioning"
+  },
+  {
+    "day": 149,
+    "title": "Clarity",
+    "question": "Was I understood?",
+    "source": "Finance & Marketing",
+    "theme": "Storytelling"
+  },
+  {
+    "day": 150,
+    "title": "When to quit",
+    "question": "Is this still the right fight?",
+    "source": "Finance & Marketing",
+    "theme": "Simplicity"
+  },
+  {
+    "day": 151,
+    "title": "Failure as data",
+    "question": "What would I do differently?",
+    "source": "Finance & Marketing",
+    "theme": "Focus"
+  },
+  {
+    "day": 152,
+    "title": "Daily learning",
+    "question": "What surprised me today?",
+    "source": "Finance & Marketing",
+    "theme": "Integrity"
+  },
+  {
+    "day": 153,
+    "title": "Books as mentors",
+    "question": "What would the author do?",
+    "source": "Finance & Marketing",
+    "theme": "Time Management"
+  },
+  {
+    "day": 154,
+    "title": "Learn from the best",
+    "question": "Who has the results I want?",
+    "source": "Finance & Marketing",
+    "theme": "Opportunity Cost"
+  },
+  {
+    "day": 155,
+    "title": "Give first",
+    "question": "Who can I help this week?",
+    "source": "Finance & Marketing",
+    "theme": "Diversification"
+  },
+  {
+    "day": 156,
+    "title": "Long-term reputation",
+    "question": "What will they say in 10 years?",
+    "source": "Finance & Marketing",
+    "theme": "Intrinsic Value"
+  },
+  {
+    "day": 157,
+    "title": "Compound interest in life",
+    "question": "Where can I apply compounding beyond money?",
+    "source": "Finance & Marketing",
+    "theme": "Moat & Advantage"
+  },
+  {
+    "day": 158,
+    "title": "Patience in decisions",
+    "question": "How do I slow down when everyone rushes?",
+    "source": "Finance & Marketing",
+    "theme": "Cash Flow"
+  },
+  {
+    "day": 159,
+    "title": "Knowing your circle of competence",
+    "question": "What do I truly understand well?",
+    "source": "Finance & Marketing",
+    "theme": "Debt & Leverage"
+  },
+  {
+    "day": 160,
+    "title": "Margin of safety in choices",
+    "question": "How do I leave room for error?",
+    "source": "Finance & Marketing",
+    "theme": "Savings & Frugality"
+  },
+  {
+    "day": 161,
+    "title": "Mr. Market and emotional discipline",
+    "question": "How do I stay calm when others panic?",
+    "source": "Finance & Marketing",
+    "theme": "Goals & Planning"
+  },
+  {
+    "day": 162,
+    "title": "Intrinsic value of things",
+    "question": "What is this really worth to me?",
+    "source": "Finance & Marketing",
+    "theme": "Feedback & Iteration"
+  },
+  {
+    "day": 163,
+    "title": "Buying wonderful at fair price",
+    "question": "When is good enough good enough?",
+    "source": "Finance & Marketing",
+    "theme": "Innovation"
+  },
+  {
+    "day": 164,
+    "title": "Long-term holding",
+    "question": "What am I willing to hold for years?",
+    "source": "Finance & Marketing",
+    "theme": "Competition"
+  },
+  {
+    "day": 165,
+    "title": "Diversification vs concentration",
+    "question": "How much should I spread my bets?",
+    "source": "Finance & Marketing",
+    "theme": "Pricing"
+  },
+  {
+    "day": 166,
+    "title": "Fear and greed",
+    "question": "How do I use others' emotions wisely?",
+    "source": "Finance & Marketing",
+    "theme": "Negotiation"
+  },
+  {
+    "day": 167,
+    "title": "Customer obsession",
+    "question": "What does my customer need today?",
+    "source": "Finance & Marketing",
+    "theme": "Leadership"
+  },
+  {
+    "day": 168,
+    "title": "Brand as promise",
+    "question": "What do people expect from me?",
+    "source": "Finance & Marketing",
+    "theme": "Teamwork"
+  },
+  {
+    "day": 169,
+    "title": "Positioning in mind",
+    "question": "How do I want to be remembered?",
+    "source": "Finance & Marketing",
+    "theme": "Communication"
+  },
+  {
+    "day": 170,
+    "title": "Story over specs",
+    "question": "What story does my work tell?",
+    "source": "Finance & Marketing",
+    "theme": "Persistence"
+  },
+  {
+    "day": 171,
+    "title": "Simplicity in execution",
+    "question": "What can I remove and still deliver?",
+    "source": "Finance & Marketing",
+    "theme": "Failure & Learning"
+  },
+  {
+    "day": 172,
+    "title": "Focus and saying no",
+    "question": "What am I saying no to today?",
+    "source": "Finance & Marketing",
+    "theme": "Curiosity"
+  },
+  {
+    "day": 173,
+    "title": "Integrity as asset",
+    "question": "What would I do if no one watched?",
+    "source": "Finance & Marketing",
+    "theme": "Reading & Learning"
+  },
+  {
+    "day": 174,
+    "title": "Time as scarce resource",
+    "question": "What deserves my attention today?",
+    "source": "Finance & Marketing",
+    "theme": "Mentors"
+  },
+  {
+    "day": 175,
+    "title": "Opportunity cost of yes",
+    "question": "What am I giving up by doing this?",
+    "source": "Finance & Marketing",
+    "theme": "Networking"
+  },
+  {
+    "day": 176,
+    "title": "Moat in career",
+    "question": "What advantage do I have that compounds?",
+    "source": "Finance & Marketing",
+    "theme": "Reputation"
+  },
+  {
+    "day": 177,
+    "title": "Cash flow thinking",
+    "question": "What actually puts money in the bank?",
+    "source": "Finance & Marketing",
+    "theme": "Investing & Money"
+  },
+  {
+    "day": 178,
+    "title": "Debt and leverage",
+    "question": "When does borrowing help or hurt?",
+    "source": "Finance & Marketing",
+    "theme": "Patience & Long-term"
+  },
+  {
+    "day": 179,
+    "title": "Frugality and freedom",
+    "question": "What spending adds no lasting value?",
+    "source": "Finance & Marketing",
+    "theme": "Risk & Safety"
+  },
+  {
+    "day": 180,
+    "title": "Goals that stretch",
+    "question": "What would I do if I knew I could not fail?",
+    "source": "Finance & Marketing",
+    "theme": "Learning & Competence"
+  },
+  {
+    "day": 181,
+    "title": "Feedback loops",
+    "question": "How do I get better signal from the world?",
+    "source": "Finance & Marketing",
+    "theme": "Habits & Discipline"
+  },
+  {
+    "day": 182,
+    "title": "Innovation vs imitation",
+    "question": "When to copy and when to create?",
+    "source": "Finance & Marketing",
+    "theme": "Marketing & Customers"
+  },
+  {
+    "day": 183,
+    "title": "Competing on value",
+    "question": "How do I stand out without burning out?",
+    "source": "Finance & Marketing",
+    "theme": "Brand & Trust"
+  },
+  {
+    "day": 184,
+    "title": "Pricing confidence",
+    "question": "What am I really worth?",
+    "source": "Finance & Marketing",
+    "theme": "Decision Making"
+  },
+  {
+    "day": 185,
+    "title": "Negotiation as collaboration",
+    "question": "How do I expand the pie?",
+    "source": "Finance & Marketing",
+    "theme": "Emotions & Psychology"
+  },
+  {
+    "day": 186,
+    "title": "Leading by example",
+    "question": "What would my team see if they watched me?",
+    "source": "Finance & Marketing",
+    "theme": "Value & Price"
+  },
+  {
+    "day": 187,
+    "title": "Team over solo",
+    "question": "When do I need others to win?",
+    "source": "Finance & Marketing",
+    "theme": "Compound Growth"
+  },
+  {
+    "day": 188,
+    "title": "Clear communication",
+    "question": "Did they understand what I meant?",
+    "source": "Finance & Marketing",
+    "theme": "Circle of Competence"
+  },
+  {
+    "day": 189,
+    "title": "Persistence and pivots",
+    "question": "When do I push through vs change course?",
+    "source": "Finance & Marketing",
+    "theme": "Margin of Safety"
+  },
+  {
+    "day": 190,
+    "title": "Learning from failure",
+    "question": "What did this teach me?",
+    "source": "Finance & Marketing",
+    "theme": "Market Psychology"
+  },
+  {
+    "day": 191,
+    "title": "Curiosity as engine",
+    "question": "What did I learn today?",
+    "source": "Finance & Marketing",
+    "theme": "Customer Focus"
+  },
+  {
+    "day": 192,
+    "title": "Reading as leverage",
+    "question": "What book would change my game?",
+    "source": "Finance & Marketing",
+    "theme": "Positioning"
+  },
+  {
+    "day": 193,
+    "title": "Finding mentors",
+    "question": "Who has been where I want to go?",
+    "source": "Finance & Marketing",
+    "theme": "Storytelling"
+  },
+  {
+    "day": 194,
+    "title": "Networking with intent",
+    "question": "Who do I want to help and learn from?",
+    "source": "Finance & Marketing",
+    "theme": "Simplicity"
+  },
+  {
+    "day": 195,
+    "title": "Reputation over short-term win",
+    "question": "What would my reputation say?",
+    "source": "Finance & Marketing",
+    "theme": "Focus"
+  },
+  {
+    "day": 196,
+    "title": "Value investing in time",
+    "question": "Where am I underinvesting my hours?",
+    "source": "Finance & Marketing",
+    "theme": "Integrity"
+  },
+  {
+    "day": 197,
+    "title": "Emotional discipline",
+    "question": "What would my calmest self do?",
+    "source": "Finance & Marketing",
+    "theme": "Time Management"
+  },
+  {
+    "day": 198,
+    "title": "Staying in circle",
+    "question": "What am I pretending to know?",
+    "source": "Finance & Marketing",
+    "theme": "Opportunity Cost"
+  },
+  {
+    "day": 199,
+    "title": "Buffer for unknowns",
+    "question": "What could go wrong and am I ready?",
+    "source": "Finance & Marketing",
+    "theme": "Diversification"
+  },
+  {
+    "day": 200,
+    "title": "Market mood and opportunity",
+    "question": "How do I use fear and greed?",
+    "source": "Finance & Marketing",
+    "theme": "Intrinsic Value"
+  }
+]
