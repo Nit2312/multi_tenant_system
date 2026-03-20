@@ -1,6 +1,6 @@
 """
-Query Classifier for Investment Advisor AI
-Routes queries to appropriate collections (finance, marketing, sales) based on content
+Query Classifier for Investment Advisor AI.
+Routes queries to the two supported collections: finance and marketing.
 """
 
 import re
@@ -139,10 +139,10 @@ class QueryClassifier:
     def get_collection_name(self, category: str) -> str:
         """Map category to collection name"""
         collection_mapping = {
-            'finance': 'finance_documents',
-            'marketing': 'marketing_documents'
+            'finance': 'finance',
+            'marketing': 'marketing'
         }
-        return collection_mapping.get(category, 'finance_documents')
+        return collection_mapping.get(category, 'finance')
     
     def get_fallback_response(self, category: str, query: str) -> str:
         """Generate appropriate response when no relevant data is found"""

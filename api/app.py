@@ -371,7 +371,24 @@ RAG_FETCH_K = int(os.getenv("RAG_FETCH_K", "15"))
 RAG_USE_TOP_K = int(os.getenv("RAG_USE_TOP_K", "8"))
 RAG_RERANK_MAX = int(os.getenv("RAG_RERANK_MAX", "15"))  # max docs to rerank (fewer = faster)
 RAG_SKIP_RERANK = os.getenv("RAG_SKIP_RERANK", "").lower() in ("1", "true", "yes")
+RAG_SEARCH_TYPE = os.getenv("RAG_SEARCH_TYPE", "similarity").strip().lower()
 RETRIEVAL_K = RAG_USE_TOP_K
+
+VALID_RETRIEVER_SEARCH_TYPES = {"similarity", "similarity_score_threshold", "mmr"}
+
+
+def _resolve_retriever_search_type() -> str:
+    """Return a VectorStoreRetriever-compatible search_type from env config."""
+    if RAG_SEARCH_TYPE in VALID_RETRIEVER_SEARCH_TYPES:
+        return RAG_SEARCH_TYPE
+    if RAG_SEARCH_TYPE == "hybrid":
+        print("RAG_SEARCH_TYPE=hybrid is not supported by VectorStoreRetriever; using similarity")
+    else:
+        print(
+            f"Unsupported RAG_SEARCH_TYPE={RAG_SEARCH_TYPE!r}; "
+            "valid values are similarity, similarity_score_threshold, mmr. Using similarity"
+        )
+    return "similarity"
 
 # Pattern: line that starts the actual answer (numbered list or "No procedure/documentation")
 # Removed to allow natural conversational responses
@@ -422,6 +439,44 @@ def _safe_get(doc, key, default=None):
         return doc.get(key, default)
 
     return default
+
+
+def _normalize_text(value: str) -> str:
+    """Normalize text for tolerant matching (case/punctuation/spacing-insensitive)."""
+    import re
+
+    if not value:
+        return ""
+    normalized = re.sub(r"[^a-z0-9]+", " ", str(value).lower())
+    return " ".join(normalized.split())
+
+
+def _doc_matches_book_filter(doc, book_filter: str) -> bool:
+    """Best-effort local book matching when DB metadata filters are too strict."""
+    metadata = _safe_get(doc, "metadata", {}) or {}
+    wanted = _normalize_text(book_filter)
+    if not wanted:
+        return False
+
+    candidates = [
+        _normalize_text(metadata.get("book_name", "")),
+        _normalize_text(metadata.get("filename", "")),
+        _normalize_text(metadata.get("source", "")),
+    ]
+
+    wanted_tokens = set(wanted.split())
+    if not wanted_tokens:
+        return False
+
+    for candidate in candidates:
+        if not candidate:
+            continue
+        if wanted == candidate or wanted in candidate or candidate in wanted:
+            return True
+        candidate_tokens = set(candidate.split())
+        if wanted_tokens.issubset(candidate_tokens):
+            return True
+    return False
 
 def _format_docs(docs):
     """Format Document-like objects with collection information."""
@@ -680,14 +735,21 @@ def get_retrieved_sources(query, collection_name=None, book_filter=None):
         category, confidence = query_classifier.classify_query(query)
         collection_name = query_classifier.get_collection_name(category)
         print(f"Query classified as: {category} (confidence: {confidence:.2f}), using collection: {collection_name}")
+
+    requested_collection = collection_name
+    collection_name = str(collection_name).strip().lower() if collection_name else None
     
     # Get the appropriate vectorstore
+    if collection_name not in {"finance", "marketing"}:
+        print(f"Invalid collection requested: {requested_collection}. Falling back to finance")
+        collection_name = "finance"
+
     vectorstore = vectorstores.get(collection_name)
     if not vectorstore:
         # Fallback to finance collection if specified collection doesn't exist
         vectorstore = vectorstores.get('finance')
         collection_name = 'finance'
-        print(f"Using fallback collection: {collection_name}")
+        print(f"Using fallback collection: {collection_name} (requested: {requested_collection})")
     
     if not vectorstore:
         print("DEBUG: No vectorstore available")
@@ -695,27 +757,83 @@ def get_retrieved_sources(query, collection_name=None, book_filter=None):
     
     print(f"Vectorstore found: {type(vectorstore)}")
     
-    # Create retriever for this collection with optional metadata filter
+    preferred_search_type = _resolve_retriever_search_type()
+    base_search_kwargs: dict[str, object] = {"k": RAG_FETCH_K}
+    search_kwargs: dict[str, object] = dict(base_search_kwargs)
     if book_filter:
-        # Apply metadata filter for specific book
-        retriever = vectorstore.as_retriever(
-            search_type="similarity",
-            search_kwargs={
-                "k": RAG_FETCH_K,
-                "filter": {"book_name": book_filter}
-            }
-        )
+        search_kwargs["filter"] = {"book_name": book_filter}
         print(f"Applied metadata filter for book: {book_filter}")
-    else:
-        retriever = vectorstore.as_retriever(
-            search_type="similarity",
-            search_kwargs={"k": RAG_FETCH_K}
-        )
+
+    retriever = vectorstore.as_retriever(
+        search_type=preferred_search_type,
+        search_kwargs=search_kwargs,
+    )
+    print(f"Retriever search_type: {preferred_search_type}")
     
     print(f"Retriever created: {type(retriever)}")
     
     try:
         docs_sem = retriever.invoke(query)
+
+        # If strict DB-side book filter returns nothing, try robust fallbacks.
+        if book_filter and not docs_sem:
+            print("Book-filtered retrieval returned 0 docs; trying fallback strategies")
+
+            other_collection = "marketing" if collection_name == "finance" else "finance"
+            other_store = vectorstores.get(other_collection)
+            if other_store:
+                try:
+                    other_retriever = other_store.as_retriever(
+                        search_type=preferred_search_type,
+                        search_kwargs=search_kwargs,
+                    )
+                    other_docs = other_retriever.invoke(query)
+                    if other_docs:
+                        docs_sem = other_docs
+                        print(
+                            f"Book filter matched {len(other_docs)} docs in alternate collection {other_collection}"
+                        )
+                except Exception as other_err:
+                    print(f"Alternate collection filtered retrieval failed: {other_err}")
+
+            if not docs_sem:
+                try:
+                    fallback_k = max(RAG_FETCH_K, 60)
+                    unfiltered_retriever = vectorstore.as_retriever(
+                        search_type=preferred_search_type,
+                        search_kwargs={"k": fallback_k},
+                    )
+                    # Query both full user query and canonical book title to improve recall.
+                    unfiltered_docs = unfiltered_retriever.invoke(query)
+                    if book_filter and _normalize_text(book_filter) not in _normalize_text(query):
+                        unfiltered_docs.extend(unfiltered_retriever.invoke(book_filter))
+
+                    # Deduplicate by document id or source key before local filtering.
+                    deduped_docs = []
+                    seen_keys = set()
+                    for d in unfiltered_docs:
+                        doc_id = _safe_get(d, "id", None)
+                        key = doc_id or _source_doc_key(d)
+                        if key in seen_keys:
+                            continue
+                        seen_keys.add(key)
+                        deduped_docs.append(d)
+
+                    unfiltered_docs = deduped_docs
+                    locally_matched = [d for d in unfiltered_docs if _doc_matches_book_filter(d, book_filter)]
+                    if locally_matched:
+                        docs_sem = locally_matched
+                        print(
+                            f"Local book matching found {len(locally_matched)} docs after unfiltered retrieval"
+                        )
+                    else:
+                        docs_sem = unfiltered_docs
+                        print(
+                            "No local book-name match found; using unfiltered retrieval to avoid empty context"
+                        )
+                except Exception as unfiltered_err:
+                    print(f"Unfiltered fallback retrieval failed: {unfiltered_err}")
+
         print(f"Retrieved {len(docs_sem)} documents from semantic search")
         docs_to_rerank = docs_sem[:RAG_RERANK_MAX]
         
@@ -734,7 +852,34 @@ def get_retrieved_sources(query, collection_name=None, book_filter=None):
             print(f"Cross-encoder reranking failed: {e}")
             return docs_to_rerank[:RAG_USE_TOP_K]
     except Exception as e:
-        print(f"Error retrieving documents: {e}")
+        print(f"Error retrieving documents with search_type={preferred_search_type}: {e}")
+        if preferred_search_type != "similarity":
+            try:
+                print("Falling back to similarity retrieval")
+                fallback_retriever = vectorstore.as_retriever(
+                    search_type="similarity",
+                    search_kwargs=search_kwargs,
+                )
+                docs_sem = fallback_retriever.invoke(query)
+                print(f"Fallback similarity retrieved {len(docs_sem)} documents")
+                docs_to_rerank = docs_sem[:RAG_RERANK_MAX]
+
+                if RAG_SKIP_RERANK or not docs_to_rerank:
+                    result = docs_to_rerank[:RAG_USE_TOP_K]
+                    print(f"Returning {len(result)} documents (no reranking)")
+                    return result
+
+                try:
+                    from api.cross_encoder import CrossEncoderReranker
+                    reranker = CrossEncoderReranker()
+                    result = reranker.rerank(query, docs_to_rerank, top_k=RAG_USE_TOP_K)
+                    print(f"Reranked to {len(result)} documents")
+                    return result
+                except Exception as rerank_error:
+                    print(f"Cross-encoder reranking failed after fallback: {rerank_error}")
+                    return docs_to_rerank[:RAG_USE_TOP_K]
+            except Exception as fallback_error:
+                print(f"Fallback similarity retrieval also failed: {fallback_error}")
         import traceback
         traceback.print_exc()
         return []
@@ -751,13 +896,26 @@ def get_daily_dose_sources(query: str, k_per_collection: int = 6):
         if not store:
             continue
         try:
+            preferred_search_type = _resolve_retriever_search_type()
             retriever = store.as_retriever(
-                search_type="similarity",
+                search_type=preferred_search_type,
                 search_kwargs={"k": k_per_collection},
             )
             docs.extend(retriever.invoke(query))
         except Exception as e:
-            print(f"Daily dose retrieval from {coll} failed: {e}")
+            if preferred_search_type != "similarity":
+                try:
+                    print(f"Daily dose retrieval from {coll} failed with search_type={preferred_search_type}: {e}; falling back to similarity")
+                    fallback_retriever = store.as_retriever(
+                        search_type="similarity",
+                        search_kwargs={"k": k_per_collection},
+                    )
+                    docs.extend(fallback_retriever.invoke(query))
+                    continue
+                except Exception as fallback_error:
+                    print(f"Daily dose fallback similarity retrieval from {coll} failed: {fallback_error}")
+            else:
+                print(f"Daily dose retrieval from {coll} failed: {e}")
     return docs[: RAG_USE_TOP_K * 2]
 
 
